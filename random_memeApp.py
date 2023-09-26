@@ -7,9 +7,8 @@ app = Flask(__name__)
 @app.route("/")
 def main_page():
     api = memeAPI()
-    name = 'wholesomememes'
-    #meme_json = api.get_meme_json()
-    meme_json = api.get_meme_json(name)
+    subreddit_name = 'wholesomememes'
+    meme_json = api.get_meme_json(subreddit_name)
     while meme_json['nsfw'] == 'true':
         meme_json = find_new_meme(api)
     image_url = meme_json['url']

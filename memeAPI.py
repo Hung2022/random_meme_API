@@ -10,13 +10,13 @@ class memeAPI:
 
     def get_meme_json(self, subreddit_name) -> dict:
         # response = requests.get(self.api_url)
-        self.customSubreddit(subreddit_name)
+        self.custom_subreddit(subreddit_name)
         response = requests.get(self.api_url + '/' + self.subreddit)
         if response.status_code != 200:
             raise Exception
         return response.json()
 
-    def customSubreddit(self, name) -> None:
+    def custom_subreddit(self, name) -> None:
         """
         set sub reddit name, use for endpoint of API
         :param name: name of a sub reddit
@@ -25,10 +25,10 @@ class memeAPI:
         if name is not None:
             self.subreddit = name
         else:
-            self.set_randomSubreddit()
+            self.set_random_subreddit()
         return
 
-    def set_randomSubreddit(self) -> None:
+    def set_random_subreddit(self) -> None:
         """
         pick a random sub reddit from the subreddit_list
         :return:
