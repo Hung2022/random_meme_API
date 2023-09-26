@@ -1,6 +1,4 @@
 from flask import Flask, render_template, Response
-import os
-from PIL import Image
 from memeAPI import memeAPI
 
 
@@ -10,8 +8,7 @@ app = Flask(__name__)
 def main_page():
     api = memeAPI()
     meme_json = api.get_meme_json()
-    subreddit = 'me_irl'
-    while meme_json['nsfw'] == 'true' and meme_json['subreddit'] != subreddit:
+    while meme_json['nsfw'] == 'true':
         meme_json = find_new_meme(api)
     image_url = meme_json['url']
     print(meme_json['nsfw'])

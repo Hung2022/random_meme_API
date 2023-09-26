@@ -6,25 +6,29 @@ class memeAPI:
         self.subreddit = subreddit
         self.api_url = api_url
 
-    def get_meme_json(self):
+    def get_meme_json(self) -> dict:
         #response = requests.get(self.api_url)
         self.customSubreddit()
         response = requests.get(self.api_url + '/' + self.subreddit)
         if response.status_code != 200:
             raise Exception
-        #response = self.customSubreddit(response)
         return response.json()
 
-    def customSubreddit(self):
-        if self.subreddit == None:
+    def customSubreddit(self) -> None:
+        """
+        set sub reddit name, use for endpoint of API
+        :return:
+        """
+        if self.subreddit is None:
             self.set_randomSubreddit()
             return
-            # subreddit_name = 'dankmemes'
-            # return subreddit_name
-        params = 'wholesomememes'
-        return params
+        self.subreddit = 'wholesomememes'
 
-    def set_randomSubreddit(self):
+    def set_randomSubreddit(self) -> None:
+        """
+        pick a random sub reddit from the subreddit_list
+        :return:
+        """
         subreddit_list = ['me_irl', 'dankmemes', 'memes']
         total_subreddit = len(subreddit_list) - 1
         subreddit_index = random.randint(0, total_subreddit)
